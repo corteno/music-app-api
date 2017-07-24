@@ -185,6 +185,123 @@
 
     </div>
 
+    <!-- /room/:id -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/room/:id</h3>
+                <h4 class="route-box-subtitle">Method: <span>GET</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">http://api.borsodidavid.com/room/1</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">__v: 0,</div>
+                <div class="route-example-div">id: "1",</div>
+                <div class="route-example-div">name: "Room name",</div>
+                <div class="route-example-div">password: "",</div>
+                <div class="route-example-div">owner: "OwnerName",</div>
+                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                <div class="route-example-div">userlist: [],</div>
+                <div class="route-example-div">isPublic: true</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Fetches the details of a room with given ID.
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- /rooms -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/rooms</h3>
+                <h4 class="route-box-subtitle">Method: <span>GET</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">http://api.borsodidavid.com/rooms</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">__v: 0,</div>
+                <div class="route-example-div">id: "1",</div>
+                <div class="route-example-div">name: "Room name",</div>
+                <div class="route-example-div">password: "",</div>
+                <div class="route-example-div">owner: "OwnerName",</div>
+                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                <div class="route-example-div">userlist: [],</div>
+                <div class="route-example-div">isPublic: true</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Fetches the details of a room with given ID.
+            </p>
+        </div>
+
+
+    </div>
+
+
 </section>
 <footer>
     <div class="footer-content">Made by Borsodi Dávid © 2017</div>

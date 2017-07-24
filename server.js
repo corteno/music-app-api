@@ -132,16 +132,27 @@ app.post('/room', (req, res) => {
 //Joining room
 app.get('/room/:id', (req, res) => {
     Room.find({id: req.params.id}).then((doc) => {
-        if(doc){
+        if(doc.length > 0){
             return res.send(doc);
         }
+
+
+        res.status(400).send(message('No such room exist'));
+
+    }, (e) => {
+        res.status(400).send(message('No such room exists'));
+    });
+});
+
+//Get all rooms
+app.get('/rooms', (req, res) => {
+    Room.find().sort('-date').then((rooms) => {
+        res.send(rooms);
 
     }, (e) => {
         res.status(400).send(message(e));
     });
 });
-
-//Delete room
 
 
 
