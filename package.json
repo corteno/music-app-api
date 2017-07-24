@@ -1,0 +1,22 @@
+{
+  "name": "music-app-api",
+  "version": "1.0.0",
+  "description": "API for YT music list app",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "author": "Borsodi Dávid",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "g": "^2.0.1",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.4",
+    "nodemon": "^1.11.0",
+    "promise": "^8.0.1"
+  }
+}

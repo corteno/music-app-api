@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Documentation</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="col">
+<h1 class="page-title">API Documentation</h1>
+<section class="content-wrapper col">
+    <header>
+        <h3 class="header-title">Request</h3>
+        <h3 class="header-title">Response</h3>
+        <h3 class="header-title">Description</h3>
+    </header>
+
+    <!-- /user -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/user</h3>
+                <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">username: "yourUsername",</div>
+                <div class="route-example-div">email: "yourEmail@email.com",</div>
+                <div class="route-example-div">password: "yourPassword"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "User created"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Creates a user with the given credentials and returns a corresponding response.
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- /login -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/login</h3>
+                <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">username: "yourUsername",</div>
+                <div class="route-example-div">password: "yourPassword"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Login successful"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Invalid credentials"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Tries to log in the user with the given credentials.
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- /room -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/room</h3>
+                <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">id: "1",</div>
+                <div class="route-example-div">name: "Room name",</div>
+                <div class="route-example-div">password: "<span class="optional">yourpassword</span>", (optional)</div>
+                <div class="route-example-div">owner: "OwnerName",</div>
+                <div class="route-example-div">isPublic: true</div>
+                <span class="route-example-span">}</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">__v: 0,</div>
+                <div class="route-example-div">id: "1",</div>
+                <div class="route-example-div">name: "Room name",</div>
+                <div class="route-example-div">password: "",</div>
+                <div class="route-example-div">owner: "OwnerName",</div>
+                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                <div class="route-example-div">userlist: [],</div>
+                <div class="route-example-div">isPublic: true</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="route-example-div">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Creates a room with the given details.
+            </p>
+        </div>
+
+
+    </div>
+
+</section>
+<footer>
+    <div class="footer-content">Made by Borsodi Dávid © 2017</div>
+</footer>
+</body>
+</html>
