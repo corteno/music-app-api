@@ -1,9 +1,11 @@
 var express = require('express');
 var path = require('path');
 var cors = require('cors');
+var https = require('https');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var mongoose = require('./db/mongoose'); //Need to import it so it starts the connection
+var bcrypt = require('bcryptjs');
 
 var {Song} = require('./models/song');
 var {User} = require('./models/user');
@@ -33,11 +35,17 @@ app.get('/', (req, res) => {
 
 //Registering new user
 app.post('/user', (req, res) => {
+    //var encryptedPass =
+
     var user = new User({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email
     });
+    var asd = bcrypt.hash(req.body.password, 5, (err, pass) => {
+        return pass;
+    });
+    console.log(asd);
 
 
     User.findOne({username: user.username}).then((doc) => {
@@ -46,8 +54,10 @@ app.post('/user', (req, res) => {
         }
 
         user.save().then((doc) => {
+            console.log(md5(doc.password));
             res.send(message('User created'));
         }, (e) => {
+            console.log(e);
             res.status(400).send(message('Couldn\'t save user'));
         });
 
@@ -130,14 +140,20 @@ app.post('/room', (req, res) => {
 
 
 //Joining room
-app.get('/room/:id', (req, res) => {
-    Room.find({id: req.params.id}).then((doc) => {
-        if(doc.length > 0){
-            return res.send(doc);
+app.post('/room/:id', (req, res) => {
+    Room.findOne({id: req.params.id}).then((doc) => {
+        if (doc) {
+            if (doc.password === req.body.password) {
+                doc.password = '';
+                return res.send(doc);
+            } else if (doc.password === "") {
+                return res.send(doc);
+            } else {
+                return res.status(400).send(message('Invalid Password'));
+            }
         }
 
-
-        res.status(400).send(message('No such room exist'));
+        return res.status(400).send(message('No such room exist'));
 
     }, (e) => {
         res.status(400).send(message('No such room exists'));
@@ -152,6 +168,27 @@ app.get('/rooms', (req, res) => {
     }, (e) => {
         res.status(400).send(message(e));
     });
+});
+
+//Delete room
+app.delete('/room/:id', (req, res) => {
+    Room.findOneAndRemove({id: req.params.id})
+        .then((doc) => {
+            Playlist.findOneAndRemove({id: req.params.id})
+                .then((doc) => {
+                    if (doc !== null) {
+                        res.send(message(`Room with ID: '${doc.id}' and playlist deleted`));
+                    } else {
+                        res.send(message('No such room!'))
+                    }
+
+                }, (e) => {
+                    res.status(400).send(message(e));
+                });
+
+        }, (e) => {
+            res.status(400).send(message(e));
+        });
 });
 
 

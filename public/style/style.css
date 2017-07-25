@@ -2,6 +2,7 @@
     box-sizing: border-box;
     font-family: RobotoRegular;
     color: #212121;
+    -webkit-font-smoothing: antialiased;
 }
 
 body{
@@ -124,7 +125,7 @@ header{
 
 .route-box-subtitle{
     margin: 0;
-    font-size: 14px;
+    font-size: 0.9em;
     color: #616161;
     font-family: RobotoLight;
 }
@@ -168,13 +169,24 @@ header{
 
 
 .route-example-div {
-    margin-left: 45px;
     margin-bottom: 3px;
 }
 
 .route-box-description{
     width: 100%;
     line-height: 21px;
+}
+
+.indent-one{
+    margin-left: 20px;
+}
+
+.indent-two{
+    margin-left: 45px;
+}
+
+.indent-three{
+    margin-left: 75px;
 }
 
 

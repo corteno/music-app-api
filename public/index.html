@@ -23,11 +23,14 @@
                 <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
             </div>
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">username: "yourUsername",</div>
-                <div class="route-example-div">email: "yourEmail@email.com",</div>
-                <div class="route-example-div">password: "yourPassword"</div>
-                <span class="route-example-span">}</span>
+                <span class="indent-one">{</span>
+                <div class="indent-two col">
+                    <p class="route-example-div">username: "yourUsername",</p>
+                    <p class="route-example-div">email: "yourEmail@email.com",</p>
+                    <p class="route-example-div">password: "yourPassword"</p>
+                </div>
+
+                <span class="indent-one">}</span>
             </pre>
         </div>
 
@@ -41,7 +44,7 @@
 
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "User created"</div>
+                <div class="indent-two">message: "User created"</div>
                 <span class="route-example-span">}</span>
             </pre>
 
@@ -53,7 +56,7 @@
 
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Error message"</div>
+                <div class="indent-two">message: "Error message"</div>
                 <span class="route-example-span">}</span>
             </pre>
 
@@ -78,8 +81,11 @@
             </div>
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">username: "yourUsername",</div>
-                <div class="route-example-div">password: "yourPassword"</div>
+                <div class="indent-two col">
+                    <div class="route-example-div">username: "yourUsername",</div>
+                    <div class="route-example-div">password: "yourPassword"</div>
+                </div>
+
                 <span class="route-example-span">}</span>
             </pre>
         </div>
@@ -94,7 +100,7 @@
 
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Login successful"</div>
+                <div class="indent-two">message: "Login successful"</div>
                 <span class="route-example-span">}</span>
             </pre>
 
@@ -106,7 +112,7 @@
 
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Invalid credentials"</div>
+                <div class="indent-two">message: "Invalid credentials"</div>
                 <span class="route-example-span">}</span>
             </pre>
 
@@ -130,13 +136,15 @@
                 <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
             </div>
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">id: "1",</div>
-                <div class="route-example-div">name: "Room name",</div>
-                <div class="route-example-div">password: "<span class="optional">yourpassword</span>", (optional)</div>
-                <div class="route-example-div">owner: "OwnerName",</div>
-                <div class="route-example-div">isPublic: true</div>
-                <span class="route-example-span">}</span>
+                <div class="indent-one">{</div>
+                    <div class="indent-two col">
+                         <div class="route-example-div">id: "1",</div>
+                        <div class="route-example-div">name: "Room name",</div>
+                        <div class="route-example-div">password: "<span class="optional">yourpassword</span>", (optional)</div>
+                        <div class="route-example-div">owner: "OwnerName",</div>
+                        <div class="route-example-div">isPublic: true</div>
+                    </div>
+                <div class="indent-one">}</div>
             </pre>
         </div>
 
@@ -149,17 +157,19 @@
             </div>
 
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">__v: 0,</div>
-                <div class="route-example-div">id: "1",</div>
-                <div class="route-example-div">name: "Room name",</div>
-                <div class="route-example-div">password: "",</div>
-                <div class="route-example-div">owner: "OwnerName",</div>
-                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
-                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
-                <div class="route-example-div">userlist: [],</div>
-                <div class="route-example-div">isPublic: true</div>
-                <span class="route-example-span">}</span>
+                <div class="indent-one">{</div>
+                <div class="indent-two col">
+                    <div class="route-example-div">__v: 0,</div>
+                    <div class="route-example-div">id: "1",</div>
+                    <div class="route-example-div">name: "Room name",</div>
+                    <div class="route-example-div">password: "",</div>
+                    <div class="route-example-div">owner: "OwnerName",</div>
+                    <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                    <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                    <div class="route-example-div">userlist: [],</div>
+                    <div class="route-example-div">isPublic: true</div>
+                </div>
+                <div class="indent-one">}</div>
             </pre>
 
 
@@ -169,9 +179,9 @@
             </div>
 
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Error message"</div>
-                <span class="route-example-span">}</span>
+                <div class="indent-one">{</div>
+                <div class="indent-two">message: "Error message"</div>
+                <div class="indent-one">}</div>
             </pre>
 
         </div>
@@ -191,10 +201,16 @@
         <div class="route-box col">
             <div class="route-title-wrapper col">
                 <h3 class="route-box-title route">/room/:id</h3>
-                <h4 class="route-box-subtitle">Method: <span>GET</span></h4>
+                <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
             </div>
             <pre class="route-example col">
-                <span class="route-example-span">http://api.borsodidavid.com/room/1</span>
+                <span class="indent-one">http://api.borsodidavid.com/room/1</span>
+            </pre>
+            <h4 class="route-box-subtitle">With password:</h4>
+            <pre class="route-example col">
+                <span class="indent-one">{</span>
+                <div class="indent-two">password: "yourPassword"</div>
+                <span class="indent-one">}</span>
             </pre>
         </div>
 
@@ -207,17 +223,20 @@
             </div>
 
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">__v: 0,</div>
-                <div class="route-example-div">id: "1",</div>
-                <div class="route-example-div">name: "Room name",</div>
-                <div class="route-example-div">password: "",</div>
-                <div class="route-example-div">owner: "OwnerName",</div>
-                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
-                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
-                <div class="route-example-div">userlist: [],</div>
-                <div class="route-example-div">isPublic: true</div>
-                <span class="route-example-span">}</span>
+                <div class="indent-one">{</div>
+
+                <div class="indent-two col">
+                    <div class="route-example-div">__v: 0,</div>
+                    <div class="route-example-div">id: "1",</div>
+                    <div class="route-example-div">name: "Room name",</div>
+                    <div class="route-example-div">password: "",</div>
+                    <div class="route-example-div">owner: "OwnerName",</div>
+                    <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                    <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                    <div class="route-example-div">userlist: [],</div>
+                    <div class="route-example-div">isPublic: true</div>
+                </div>
+                <div class="indent-one">}</div>
             </pre>
 
 
@@ -227,9 +246,9 @@
             </div>
 
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Error message"</div>
-                <span class="route-example-span">}</span>
+                <div class="indent-one">{</div>
+                <div class="indent-two">message: "Error message"</div>
+                <div class="indent-one">}</div>
             </pre>
 
         </div>
@@ -265,17 +284,21 @@
             </div>
 
             <pre class="route-example col">
-                <span class="route-example-span">{</span>
-                <div class="route-example-div">__v: 0,</div>
-                <div class="route-example-div">id: "1",</div>
-                <div class="route-example-div">name: "Room name",</div>
-                <div class="route-example-div">password: "",</div>
-                <div class="route-example-div">owner: "OwnerName",</div>
-                <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
-                <div class="route-example-div">speakers: [ "OwnerName" ],</div>
-                <div class="route-example-div">userlist: [],</div>
-                <div class="route-example-div">isPublic: true</div>
-                <span class="route-example-span">}</span>
+                <span class="indent-one">[</span>
+                <div class="indent-two">{</div>
+                    <div class="indent-three col">
+                        <div class="route-example-div">__v: 0,</div>
+                        <div class="route-example-div">id: "1",</div>
+                        <div class="route-example-div">name: "Room name",</div>
+                        <div class="route-example-div">password: "",</div>
+                        <div class="route-example-div">owner: "OwnerName",</div>
+                        <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                        <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                        <div class="route-example-div">userlist: [],</div>
+                        <div class="route-example-div">isPublic: true</div>
+                    </div>
+                <div class="indent-two">}</div>
+                <span class="indent-one">]</span>
             </pre>
 
 
@@ -286,7 +309,7 @@
 
             <pre class="route-example col">
                 <span class="route-example-span">{</span>
-                <div class="route-example-div">message: "Error message"</div>
+                <div class="indent-two">message: "Error message"</div>
                 <span class="route-example-span">}</span>
             </pre>
 
@@ -294,7 +317,69 @@
 
         <div class="route-box">
             <p class="route-box-description">
-                Fetches the details of a room with given ID.
+                Fetches all the rooms.
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- /rooms DELETE -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/room/:id</h3>
+                <h4 class="route-box-subtitle">Method: <span>DELETE</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="route-example-span">http://api.borsodidavid.com/room/1</span>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="indent-one">[</span>
+                <div class="indent-two">{</div>
+                    <div class="indent-three col">
+                        <div class="route-example-div">__v: 0,</div>
+                        <div class="route-example-div">id: "1",</div>
+                        <div class="route-example-div">name: "Room name",</div>
+                        <div class="route-example-div">password: "",</div>
+                        <div class="route-example-div">owner: "OwnerName",</div>
+                        <div class="route-example-div">_id: "5975ecef3b83172b8034e5fe",</div>
+                        <div class="route-example-div">speakers: [ "OwnerName" ],</div>
+                        <div class="route-example-div">userlist: [],</div>
+                        <div class="route-example-div">isPublic: true</div>
+                    </div>
+                <div class="indent-two">}</div>
+                <span class="indent-one">]</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="indent-two">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Deletes a room by ID
             </p>
         </div>
 
