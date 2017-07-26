@@ -1,23 +1,23 @@
-var express = require('express');
-var path = require('path');
-var cors = require('cors');
-var https = require('https');
-var bodyParser = require('body-parser');
-var {ObjectID} = require('mongodb');
-var mongoose = require('./db/mongoose'); //Need to import it so it starts the connection
-var bcrypt = require('bcryptjs');
+let express = require('express');
+let path = require('path');
+let cors = require('cors');
+let https = require('https');
+let bodyParser = require('body-parser');
+let {ObjectID} = require('mongodb');
+let mongoose = require('./db/mongoose'); //Need to import it so it starts the connection
+let bcrypt = require('bcryptjs');
 
-var {Song} = require('./models/song');
-var {User} = require('./models/user');
-var {Room} = require('./models/room');
-var {Playlist} = require('./models/playlist');
-var message = require('./utils/message'); //Wrapper for {message: 'something'}
+let {Song} = require('./models/song');
+let {User} = require('./models/user');
+let {Room} = require('./models/room');
+let {Playlist} = require('./models/playlist');
+let message = require('./utils/message'); //Wrapper for {message: 'something'}
 
 
-var app = express();
+let app = express();
 const port = process.env.PORT || 3000;
 
-var server = app.listen(port);
+let server = app.listen(port);
 
 server.listen(port, () => {
     console.log(`Started up at port ${port}`);
@@ -35,17 +35,16 @@ app.get('/', (req, res) => {
 
 //Registering new user
 app.post('/user', (req, res) => {
-    //var encryptedPass =
 
-    var user = new User({
+    let user = new User({
         username: req.body.username,
         password: req.body.password,
         email: req.body.email
     });
-    var asd = bcrypt.hash(req.body.password, 5, (err, pass) => {
-        return pass;
+
+    bcrypt.hash(req.body.password, 5).then((hash) => {
+        user.password = hash;
     });
-    console.log(asd);
 
 
     User.findOne({username: user.username}).then((doc) => {
@@ -53,8 +52,8 @@ app.post('/user', (req, res) => {
             return res.status(400).send(message('Username is taken!'));
         }
 
+
         user.save().then((doc) => {
-            console.log(md5(doc.password));
             res.send(message('User created'));
         }, (e) => {
             console.log(e);
@@ -72,17 +71,27 @@ app.post('/user', (req, res) => {
 
 //Logging user in
 app.post('/login', (req, res) => {
-    var user = new User({
+    let user = new User({
         username: req.body.username,
         password: req.body.password
     });
 
-    User.findOne({username: user.username, password: user.password}).then((doc) => {
-        if (doc) {
-            return res.send(message('Successful login!'));
-        }
 
-        res.status(400).send(message('Wrong username or password!'));
+    User.findOne({username: user.username}).then((doc) => {
+        if (doc) {
+
+            bcrypt.compare(user.password, doc.password, (err, result) => {
+
+                result
+                    ? res.send(message('Successful login!'))
+                    : res.status(400).send(message('Wrong username or password!'))
+
+            });
+
+            /*return res.send(message('Successful login!'));*/
+        } else {
+            return res.status(400).send(message('Wrong username or password!'));
+        }
 
     }, (e) => {
         res.status(400).send(message(e));
@@ -90,8 +99,9 @@ app.post('/login', (req, res) => {
 
 });
 
+//Create room
 app.post('/room', (req, res) => {
-    var room = new Room({
+    let room = new Room({
         id: req.body.id,
         name: req.body.name,
         password: req.body.password,
@@ -100,34 +110,14 @@ app.post('/room', (req, res) => {
         speakers: req.body.owner
     });
 
-    var playlist = new Playlist({
-        id: req.body.id,
-        songs: []
-    });
-
     Room.findOne({owner: room.owner})
         .then((doc) => {
             if (doc) {
                 return res.status(400).send(message('Owner already has a room!'));
             }
 
-            Playlist.findOne({id: playlist.id}).then((doc) => {
-                if (doc) {
-                    return res.status(400).send(message('Room already exists'));
-                }
-
-                playlist.save().then((doc) => {
-
-                    room.save().then((doc) => {
-                        res.send(doc);
-                    });
-
-                }, (e) => {
-                    res.status(400).send(message(e));
-                });
-
-            }, (e) => {
-                res.status(400).send(message(e));
+            room.save().then((doc) => {
+                res.send(doc);
             });
 
         }, (e) => {
@@ -143,6 +133,7 @@ app.post('/room', (req, res) => {
 app.post('/room/:id', (req, res) => {
     Room.findOne({id: req.params.id}).then((doc) => {
         if (doc) {
+
             if (doc.password === req.body.password) {
                 doc.password = '';
                 return res.send(doc);
@@ -151,20 +142,32 @@ app.post('/room/:id', (req, res) => {
             } else {
                 return res.status(400).send(message('Invalid Password'));
             }
+
+        } else {
+            res.status(400).send(message('No such room exists'));
         }
 
-        return res.status(400).send(message('No such room exist'));
+
 
     }, (e) => {
         res.status(400).send(message('No such room exists'));
     });
 });
 
+//Get playlist of room with ID
+app.get('/playlist/:id', (req, res) => {
+    Room.findOne({id: req.params.id}).then((doc) => {
+        if(doc){
+            return res.send(doc.playlist);
+        }
+    });
+});
+
 //Get all rooms
 app.get('/rooms', (req, res) => {
-    Room.find().sort('-date').then((rooms) => {
-        res.send(rooms);
-
+    console.log('/rooms');
+    Room.find().sort('-date').then((doc) => {
+        res.send(doc);
     }, (e) => {
         res.status(400).send(message(e));
     });
