@@ -324,7 +324,7 @@
 
     </div>
 
-    <!-- /rooms DELETE -->
+    <!-- DELETE /rooms -->
     <div class="route-wrapper">
 
         <div class="route-box col">
@@ -380,6 +380,74 @@
         <div class="route-box">
             <p class="route-box-description">
                 Deletes a room by ID
+            </p>
+        </div>
+
+
+    </div>
+
+    <!-- POST /song/:id -->
+    <div class="route-wrapper">
+
+        <div class="route-box col">
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title route">/song/:roomid</h3>
+                <h4 class="route-box-subtitle">Method: <span>POST</span></h4>
+            </div>
+            <pre class="route-example col">
+                <span class="indent-one">http://api.borsodidavid.com/song/1</span>
+                <br>
+                <div class="indent-one">{</div>
+                <div class="indent-two">id: "MBfkyG5AsE0"</div>
+                <div class="indent-two">title: "Future James - lifecouldbeadream"</div>
+                <div class="indent-two">duration: "2:16"</div>
+                <div class="indent-two">thumbnail: "i.yt.com/picture"</div>
+                <div class="indent-one">}</div>
+            </pre>
+        </div>
+
+
+        <div class="route-box col">
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title success">Success</h3>
+                <h4 class="route-box-subtitle">Status: 200</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="indent-one">[</span>
+                <div class="indent-two">{</div>
+                    <div class="indent-three col">
+                        <div class="route-example-div">_id: "5979d27108ce510668067532",</div>
+                        <div class="route-example-div">id: "MBfkyG5AsE0",</div>
+                        <div class="route-example-div">title "Future James - lifecouldbeadream",</div>
+                        <div class="route-example-div">duration: "2:16",</div>
+                        <div class="route-example-div">thumbnail: "i.yt.com/picture"</div>
+                    </div>
+                <div class="indent-two">},</div>
+                <div class="indent-two">{</div>
+                <div class="indent-three">...</div>
+                <div class="indent-two">},</div>
+                <span class="indent-one">]</span>
+            </pre>
+
+
+            <div class="route-title-wrapper col">
+                <h3 class="route-box-title failure">Failure</h3>
+                <h4 class="route-box-subtitle">Status: 400</h4>
+            </div>
+
+            <pre class="route-example col">
+                <span class="route-example-span">{</span>
+                <div class="indent-two">message: "Error message"</div>
+                <span class="route-example-span">}</span>
+            </pre>
+
+        </div>
+
+        <div class="route-box">
+            <p class="route-box-description">
+                Adds a song to a room's playlist. Use room's ID in the url.
             </p>
         </div>
 

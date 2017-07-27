@@ -148,24 +148,13 @@ app.post('/room/:id', (req, res) => {
         }
 
 
-
     }, (e) => {
         res.status(400).send(message('No such room exists'));
     });
 });
 
-//Get playlist of room with ID
-app.get('/playlist/:id', (req, res) => {
-    Room.findOne({id: req.params.id}).then((doc) => {
-        if(doc){
-            return res.send(doc.playlist);
-        }
-    });
-});
-
 //Get all rooms
 app.get('/rooms', (req, res) => {
-    console.log('/rooms');
     Room.find().sort('-date').then((doc) => {
         res.send(doc);
     }, (e) => {
@@ -192,6 +181,45 @@ app.delete('/room/:id', (req, res) => {
         }, (e) => {
             res.status(400).send(message(e));
         });
+});
+
+//Get playlist of room with ID
+app.get('/playlist/:id', (req, res) => {
+    Room.findOne({id: req.params.id}).then((doc) => {
+        if (doc) {
+            return res.send(doc.playlist);
+        }
+    });
+});
+
+//Add a song to a playlist
+app.post('/song/:id', (req, res) => {
+    let song = new Song ({
+        title: req.body.title,
+        id: req.body.id,
+        duration: req.body.duration,
+        thumbnail: req.body.thumbnail
+    });
+
+    Room.findOne({id: req.params.id})
+        .then((doc) => {
+            if (doc) {
+                Room.findOneAndUpdate({_id: doc._id}, {$push: {playlist: song}}, {new: true})
+                    .then((doc) => {
+                        if (doc) {
+                            return res.send(doc.playlist);
+                        }
+                    });
+
+
+            } else {
+                return res.status(400).send(message('No such room!'));
+            }
+
+
+        });
+
+    //song.save().then((doc) =>{})
 });
 
 
