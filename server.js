@@ -75,6 +75,7 @@ app.post('/login', (req, res) => {
         username: req.body.username,
         password: req.body.password
     });
+    console.log(user);
 
 
     User.findOne({username: user.username}).then((doc) => {
@@ -113,16 +114,16 @@ app.post('/room', (req, res) => {
     Room.findOne({owner: room.owner})
         .then((doc) => {
             if (doc) {
+                console.log('asd');
                 return res.status(400).send(message('Owner already has a room!'));
+            } else {
+                room.save().then((doc) => {
+                    res.send(doc);
+                });
             }
 
-            room.save().then((doc) => {
-                res.send(doc);
-            });
-
         }, (e) => {
-            res.status(400).send(message(e));
-        }, (e) => {
+            console.log(e);
             res.status(400).send(message(e));
         });
 
@@ -133,11 +134,12 @@ app.post('/room', (req, res) => {
 app.post('/room/:id', (req, res) => {
     Room.findOne({id: req.params.id}).then((doc) => {
         if (doc) {
-
             if (doc.password === req.body.password) {
                 doc.password = '';
+                console.log(doc);
                 return res.send(doc);
             } else if (doc.password === "") {
+                console.log(doc);
                 return res.send(doc);
             } else {
                 return res.status(400).send(message('Invalid Password'));
@@ -194,7 +196,7 @@ app.get('/playlist/:id', (req, res) => {
 
 //Add a song to a playlist
 app.post('/song/:id', (req, res) => {
-    let song = new Song ({
+    let song = new Song({
         title: req.body.title,
         id: req.body.id,
         duration: req.body.duration,
