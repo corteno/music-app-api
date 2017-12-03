@@ -136,10 +136,8 @@ app.post('/room/:id', (req, res) => {
         if (doc) {
             if (doc.password === req.body.password) {
                 doc.password = '';
-                console.log(doc);
                 return res.send(doc);
             } else if (doc.password === "") {
-                console.log(doc);
                 return res.send(doc);
             } else {
                 return res.status(400).send(message('Invalid Password'));
@@ -224,5 +222,15 @@ app.post('/song/:id', (req, res) => {
     //song.save().then((doc) =>{})
 });
 
+app.delete('/song/:roomid/:songid', (req, res) => {
+    Room.findOneAndUpdate(
+        {id: req.params.roomid},
+        {$pull: {"playlist": {_id: ObjectID(req.params.songid)}}},
+        {new: true}
+    ).then((doc) => {
+        return res.send(doc.playlist);
+    });
+
+});
 
 
