@@ -16,6 +16,10 @@ var Song = mongoose.model('Song', {
         type: String,
         required: true
     },
+    rawDuration: {
+        type: String,
+        required: true
+    },
     thumbnail: {
         type: String,
         required: true,

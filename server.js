@@ -7,6 +7,7 @@ let {ObjectID} = require('mongodb');
 let mongoose = require('./db/mongoose'); //Need to import it so it starts the connection
 let bcrypt = require('bcryptjs');
 
+
 let {Song} = require('./models/song');
 let {User} = require('./models/user');
 let {Room} = require('./models/room');
@@ -18,6 +19,7 @@ let app = express();
 const port = process.env.PORT || 3000;
 
 let server = app.listen(port);
+let io = require('socket.io')(server);
 
 server.listen(port, () => {
     console.log(`Started up at port ${port}`);
@@ -30,6 +32,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.sendFile('index.html');
+});
+
+//Socket.io stuff
+io.on('connection', (socket) => {
+    //console.log('user connected');
+
+    socket.on('subscribe', (data) => {
+       socket.nickname = data.username + "/" + data.roomId;
+
+       socket.join(data.roomId, () => {
+           console.log(socket.nickname, "subscribed to room", data.roomId);
+       })
+
+    });
+
+    //Leaving room
+    socket.on('unsubscribe', (data) => {
+        console.log(`${socket.nickname} left room ` + data.roomId);
+        socket.leave(data.roomId);
+    });
+
+    socket.on('addSong', (data) => {
+        console.log(`refresh-${data.roomId}`);
+        socket.broadcast.to(data.roomId).emit(`refresh-${data.roomId}`, {
+            type: `refreshPlaylist`,
+            payload: true
+        })
+    });
+
+
+
 });
 
 
@@ -198,6 +231,7 @@ app.post('/song/:id', (req, res) => {
         title: req.body.title,
         id: req.body.id,
         duration: req.body.duration,
+        rawDuration: req.body.rawDuration,
         thumbnail: req.body.thumbnail
     });
 
@@ -207,7 +241,10 @@ app.post('/song/:id', (req, res) => {
                 Room.findOneAndUpdate({_id: doc._id}, {$push: {playlist: song}}, {new: true})
                     .then((doc) => {
                         if (doc) {
-                            return res.send(doc.playlist);
+                            return res.send({
+                                roomId: doc.id,
+                                playlist: doc.playlist
+                            });
                         }
                     });
 

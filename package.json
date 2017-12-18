@@ -19,6 +19,7 @@
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.4",
     "nodemon": "^1.11.0",
-    "promise": "^8.0.1"
+    "promise": "^8.0.1",
+    "socket.io": "^2.0.4"
   }
 }
