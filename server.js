@@ -39,11 +39,11 @@ io.on('connection', (socket) => {
     //console.log('user connected');
 
     socket.on('subscribe', (data) => {
-       socket.nickname = data.username + "/" + data.roomId;
+        socket.nickname = data.username + "/" + data.roomId;
 
-       socket.join(data.roomId, () => {
-           console.log(socket.nickname, "subscribed to room", data.roomId);
-       })
+        socket.join(data.roomId, () => {
+            console.log(socket.nickname, "subscribed to room", data.roomId);
+        })
 
     });
 
@@ -61,6 +61,12 @@ io.on('connection', (socket) => {
         })
     });
 
+    socket.on('removeSong', (data) => {
+        socket.broadcast.to(data.roomId).emit(`refresh-${data.roomId}`, {
+            type: `refreshPlaylistDelete`,
+            payload: true
+        });
+    });
 
 
 });
@@ -220,7 +226,10 @@ app.delete('/room/:id', (req, res) => {
 app.get('/playlist/:id', (req, res) => {
     Room.findOne({id: req.params.id}).then((doc) => {
         if (doc) {
-            return res.send(doc.playlist);
+            return res.send({
+                roomId: doc.id,
+                playlist: doc.playlist
+            });
         }
     });
 });
@@ -265,9 +274,11 @@ app.delete('/song/:roomid/:songid', (req, res) => {
         {$pull: {"playlist": {_id: ObjectID(req.params.songid)}}},
         {new: true}
     ).then((doc) => {
-        return res.send(doc.playlist);
+        return res.send({
+            playlist:doc.playlist,
+            roomId: doc.id
+        });
     });
 
 });
-
 
